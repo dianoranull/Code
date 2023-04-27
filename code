@@ -1,0 +1,18 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Set the URL of the webpage to scrape
+url = 'https://www.uz.gov.ua/'
+
+# Send a request to the webpage and get its HTML content
+response = requests.get(url)
+html_content = response.content
+
+# Parse the HTML content using BeautifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# Find the relevant elements in the HTML tree
+free_tickets = soup.find_all('div', {'class': 'free-tickets'})
+
+# Print the number of free tickets available
+print(f"Number of free tickets available: {len(free_tickets)}")
